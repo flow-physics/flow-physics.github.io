@@ -59,11 +59,11 @@ $$ \phi=f(x\pm ct) $$
 
 From this solution and the definition of the velocity potential ($ \vec{V}=\nabla\phi$),  we can find the disturbance velocity field as,
 
-$ u=f'(x \pm ct) $$
+$$ u=f'(x \pm ct) $$
 
- $ v=0$$
+$$ v=0$$
 
-$ w=0$$
+$$ w=0$$
 
 Thus we see that the transverse wave of $ \phi$ in the _x_-direction leads to a disturbance velocity involving only the _x_-component velocity _u_. So the air/water molecules are displaced in the same direction as the direction of propagation.
 
