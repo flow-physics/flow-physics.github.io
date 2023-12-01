@@ -18,33 +18,33 @@ tags:
 
 Falkner - Skan equation is a third order non-linear ordinary differential equation which arises in the laminar boundary layer flow past wedge-like objects. (More details [here](http://en.wikipedia.org/wiki/Blasius_boundary_layer)). The equation reads,
 
-$latex f'''+\frac{m+1}{2}ff''+m\left[1-(f')^2\right]= 0 &s=1$
+$ f'''+\frac{m+1}{2}ff''+m\left[1-(f')^2\right]= 0 $
 
-where _m_ is a constant representing the pressure gradient parameter. Our objective is to solve this differential equation for $latex f(\eta)$ , for a given value of _m_ using the boundary conditions,
+where _m_ is a constant representing the pressure gradient parameter. Our objective is to solve this differential equation for $ f(\eta)$ , for a given value of _m_ using the boundary conditions,
 
-$latex f(0)=0 \quad \rightarrow \text{no wall transpiration}$
+$ f(0)=0 \quad \rightarrow \text{no wall transpiration}$
 
-$latex f'(0)=0 \quad \rightarrow \text{ no-slip condition at the wall}$
+$ f'(0)=0 \quad \rightarrow \text{ no-slip condition at the wall}$
 
-$latex f'(1)=1 \, \rightarrow \text{free-stream velocity is reached at the edge of the boundary layer}$
+$ f'(1)=1 \, \rightarrow \text{free-stream velocity is reached at the edge of the boundary layer}$
 
 Generally, initial value problems (IVP) are preferred for ODEs. In the case of IVP, We will be given where to start and which direction to proceed. Then we use the differential equation to progress in that direction in a step by step manner. But here we have a boundary value problem. Shooting method is used in situations where a boundary value problem has to be solved using initial value methods. The method is described as follows.
 
 ## Shooting method
 
-  1. Guess two values for $latex f''(0)$.
+  1. Guess two values for $ f''(0)$.
 
-  2. Solve the FS equation using [RK4 method](http://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods) with initial conditions $latex f(0)=0, f'(0)=0, f''(0) = Guess1$.
+  2. Solve the FS equation using [RK4 method](http://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods) with initial conditions $ f(0)=0, f'(0)=0, f''(0) = Guess1$.
 
-  3. Solve the FS equation using RK4 method with initial conditions  $latex f(0)=0, f'(0)=0, f''(0) = Guess2$.
+  3. Solve the FS equation using RK4 method with initial conditions  $ f(0)=0, f'(0)=0, f''(0) = Guess2$.
 
-  4. Find out the resulting boundary value $latex f'(1)$ from both these solutions.
+  4. Find out the resulting boundary value $ f'(1)$ from both these solutions.
 
-  5. If the boundary value $latex f'(1)$ is different from the required value $latex f'(1)=1$, find a better initial guess using [Secant method](http://en.wikipedia.org/wiki/Secant_method).
+  5. If the boundary value $ f'(1)$ is different from the required value $ f'(1)=1$, find a better initial guess using [Secant method](http://en.wikipedia.org/wiki/Secant_method).
 
   6. Solve the FS equation by RK4 method using the new initial value guess (obtained from secant method).
 
-  7. Repeat the process until the required boundary value $latex f'(1)$ is obtained.
+  7. Repeat the process until the required boundary value $ f'(1)$ is obtained.
 
 A Fortran program for solving the Falkner-Skan equation implementing the above algorithm is provided below. (Click on any part of the code and use right arrow key to scroll to right).
 
@@ -206,10 +206,10 @@ enddo
 end subroutine rk4_fs
 {% endhighlight %}
 
-Line 114 in the above code calls the _gnuplot_ program [FS.plt](/assets/img/2015/02/fs-plt.pdf) to plot the solution. The most relevant plots for fluid dynamics in this problem are the streamwise velocity profile $latex f'(\eta)$ and the wall-normal velocity profile given by,
+Line 114 in the above code calls the _gnuplot_ program [FS.plt](/assets/img/2015/02/fs-plt.pdf) to plot the solution. The most relevant plots for fluid dynamics in this problem are the streamwise velocity profile $ f'(\eta)$ and the wall-normal velocity profile given by,
 
-$latex \frac{v}{U}=-\frac{1}{2\sqrt{Re_x}}\left[ (m+1)f+(m-1)\eta f' \right]
-&s=1$
+$ \frac{v}{U}=-\frac{1}{2\sqrt{Re_x}}\left[ (m+1)f+(m-1)\eta f' \right]
+$
 
 Sample results for the case m=0 (Blasius boundary layer) are shown below.
 ![u](/assets/img/2015/02/u.png)
