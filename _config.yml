@@ -28,7 +28,7 @@ url: "https://flow-physics.github.io/" # the base hostname & protocol for your s
 github_username:  rajesh-ae
 
 # Build settings
-theme: minima
+theme: cayman
 plugins:
   - jekyll-feed
 
