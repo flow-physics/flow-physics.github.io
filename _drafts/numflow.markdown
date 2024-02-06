@@ -1,0 +1,14 @@
+---
+author: Rajesh Venkatesan
+comments: true
+date: 2024-02-06 00:00:00+00:00
+layout: post
+link: http://flowphysics.com/numflow/
+slug: numflow
+title: NumFlow Documentation
+---
+This documentation describes the algorithm and usage of the Fortran program developed for the direct numerical simulation (DNS) of the three-dimensional Navier-Stokes equations. The domain of simulation is a parallelepiped with a Cartesian coordinate system.
+
+## Table of Contents
+
+1. [Calculation of Turbulence Statistics]({% post_url  2024-02-06-calc-turb-statistics %})
