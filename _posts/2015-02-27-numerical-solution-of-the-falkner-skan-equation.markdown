@@ -18,7 +18,7 @@ tags:
 
 Falkner - Skan equation is a third order non-linear ordinary differential equation which arises in the laminar boundary layer flow past wedge-like objects. (More details [here](http://en.wikipedia.org/wiki/Blasius_boundary_layer)). The equation reads,
 
-$ f'''+\frac{m+1}{2}ff''+m\left[1-(f')^2\right]= 0 $
+$ f'''+\frac{m+1}{2}f f'\'+m\left[1-(f')^2\right]= 0 $
 
 where _m_ is a constant representing the pressure gradient parameter. Our objective is to solve this differential equation for $ f(\eta)$ , for a given value of _m_ using the boundary conditions,
 
@@ -32,11 +32,11 @@ Generally, initial value problems (IVP) are preferred for ODEs. In the case of I
 
 ## Shooting method
 
-  1. Guess two values for $ f''(0)$.
+  1. Guess two values for $ f'\'(0)$.
 
-  2. Solve the FS equation using [RK4 method](http://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods) with initial conditions $ f(0)=0, f'(0)=0, f''(0) = Guess1$.
+  2. Solve the FS equation using [RK4 method](http://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods) with initial conditions $ f(0)=0, f'(0)=0, f'\'(0) = Guess1$.
 
-  3. Solve the FS equation using RK4 method with initial conditions  $ f(0)=0, f'(0)=0, f''(0) = Guess2$.
+  3. Solve the FS equation using RK4 method with initial conditions  $ f(0)=0, f'(0)=0, f'\'(0) = Guess2$.
 
   4. Find out the resulting boundary value $ f'(1)$ from both these solutions.
 
@@ -208,9 +208,8 @@ end subroutine rk4_fs
 
 Line 114 in the above code calls the _gnuplot_ program [FS.plt](/assets/img/2015/02/fs-plt.pdf) to plot the solution. The most relevant plots for fluid dynamics in this problem are the streamwise velocity profile $ f'(\eta)$ and the wall-normal velocity profile given by,
 
-$ \frac{v}{U}=-\frac{1}{2\sqrt{Re_x}}\left[ (m+1)f+(m-1)\eta f' \right]
-$
+$ \frac{v}{U}=-\frac{1}{2\sqrt{Re_x}}\left[ (m+1)f+(m-1)\eta f' \right] $
 
-Sample results for the case m=0 (Blasius boundary layer) are shown below.
-![u](/assets/img/2015/02/u.png)
+Sample results for the case m=0 (Blasius boundary layer) are shown below.  
+![u](/assets/img/2015/02/u.png)  
 ![v](/assets/img/2015/02/v.png)
