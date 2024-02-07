@@ -24,7 +24,10 @@
     </script> -->
     <script>
         window.MathJax = {
+        loader: {load: ['[tex]/textmacros', '[tex]/textcomp']},
         tex: {
+            packages: {'[+]': ['textmacros']},
+            textmacros: {packages: {'[+]': ['textcomp']}},
             inlineMath: [['$', '$'], ['\\(', '\\)']],
             tags: 'all'
         }
