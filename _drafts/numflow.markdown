@@ -2,8 +2,8 @@
 author: Rajesh Venkatesan
 comments: true
 date: 2024-02-06 00:00:00+00:00
-layout: post
-link: http://flowphysics.com/numflow/
+layout: page
+permalink: /numflow/
 slug: numflow
 title: NumFlow Documentation
 ---
