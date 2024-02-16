@@ -51,7 +51,7 @@ If you are dealing with scientific or numerical data in Python, naturally you wi
 We can define a custom type for our Numpy arrays using the `Annotated` type. This will wrap around Numpy's original [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html){:target="_blank" rel="noopener"} class. But we need to provide two additional things:
 
 1. A function to convert a provided string input to Numpy array - a before validation method
-1. A function to serialize a provided Numpy array into string - a custom serialization method
+1. A function to serialize a provided Numpy array into List/string - a custom serialization method
 
 Sample code for this custom datatype `MyNumPyArray` creation is given below:  
 
@@ -67,15 +67,18 @@ def nd_array_before_validator(x):
     if isinstance(x, str):
         x_list = ast.literal_eval(x)
         x = np.array(x_list)
+    if isinstance(x, List):
+        x = np.array(x)
     return x
 
 def nd_array_serializer(x):
     # custom serialization logic
-    return np.array2string(x,separator=',')
+    return x.tolist()
+    # return np.array2string(x,separator=',', threshold=sys.maxsize)
 
 MyNumPyArray = Annotated[   np.ndarray,
                             BeforeValidator(nd_array_before_validator),
-                            PlainSerializer(nd_array_serializer, return_type=str),
+                            PlainSerializer(nd_array_serializer, return_type=List),
                         ]
 
 # Remember to add 'model_config = ConfigDict(arbitrary_types_allowed=True)' to the model class when using MyNumPyArray
@@ -101,7 +104,7 @@ sample_data = np.array([[1,2],[3,4]])
 test_instance = SomeClass(name="Test", data=sample_data)
 
 print(test_instance.model_dump())
-#> {'name': 'Test', 'data': '[[1,2],\n [3,4]]'}
+#> {'name': 'Test', 'data': [[1,2], [3,4]]}
 
 {% endhighlight %}  
 
